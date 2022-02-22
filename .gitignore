@@ -1,0 +1,4 @@
+docker-compose.yml
+/db-data
+/app/vendor
+/app/var

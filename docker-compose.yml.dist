@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  wride:
+    build: ./docker/wride
+    container_name: wride
+    ports:
+      - "5000:8000"
+    volumes:
+      - ./app:/var/www/
+    environment:
+      NODE_ENV: development
+    depends_on:
+      - db
+
+  db:
+    image: mariadb:10.7
+    container_name: db
+    volumes:
+      - ./db-data:/data/db:rw
+    ports:
+      - '3306:3306'
+    restart: unless-stopped
+
+volumes:
+  db-data:
+    driver: local
